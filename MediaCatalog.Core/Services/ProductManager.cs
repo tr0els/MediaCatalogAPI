@@ -45,14 +45,19 @@ namespace MediaCatalog.Core.Services
 
         public List<Product> GetAllProductsInCatalog(int id)
         {
-            return productRepository.GetAllInCatalog(id)
-                .Where(x => x.Images.Any(d => d.ImageVariants.Any(f => f.CatalogId == id)))
-                .ToList();
+            return productRepository.GetAllInCatalog(id).ToList();
         }
 
-        public void AddImageToProduct(Image image)
+        public Product GetInCatalog(int catalogId, int productId)
         {
-            imageRepository.Add(image);
+            return productRepository.GetInCatalog(catalogId, productId);
+                //.Where(p => p.Id == productId)
+                //.ToList();
+        }
+
+        public Image AddImageToProduct(Image image)
+        {
+            return imageRepository.Add(image);
         }
 
         public async Task<Uri> UploadFileBlobAsync(Stream content, string contentType, string fileName)

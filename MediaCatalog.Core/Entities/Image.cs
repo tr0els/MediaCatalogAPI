@@ -11,6 +11,8 @@ namespace MediaCatalog.Core.Entities
         public int ProductId { get; set; }
         public string Name { get; set; } // view fx. front - ignore dpi for now
         public string Url { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
         public Product Product { get; set; }
         public List<ImageVariant> ImageVariants { get; set; } // all variants no matter which catalog? - doesn't matter if remove or there just for navi? 
     }

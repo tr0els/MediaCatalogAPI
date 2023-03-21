@@ -10,8 +10,9 @@ namespace MediaCatalog.Core.Interfaces
     {
         Product CreateProduct(Product product);
         List<Product> GetAllProducts();
-        List<Product> GetAllProductsInCatalog(int id); // get all with more filter later, object?
-        void AddImageToProduct(Image image);
+        List<Product> GetAllProductsInCatalog(int id);
+        Product GetInCatalog(int catalogId, int productId);
+        Image AddImageToProduct(Image image);
         Task<Uri> UploadFileBlobAsync(Stream content, string contentType, string fileName);
 
     }

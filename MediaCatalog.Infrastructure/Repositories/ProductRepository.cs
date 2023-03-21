@@ -52,10 +52,20 @@ namespace MediaCatalog.Infrastructure.Repositories
         public IEnumerable<Product> GetAllInCatalog(int id)
         {
             return _ctx.Product
-                .Include(p => p.Images)
+                .Include(p => p.Images.Where(i => i.ImageVariants.Count > 0))
                 .ThenInclude(x => x.ImageVariants
                     .Where(c => c.CatalogId == id));
         }
+
+        public Product GetInCatalog(int catalogId, int productId)
+        {
+            return _ctx.Product
+                .Include(p => p.Images
+                    .Where(i => i.ImageVariants.Count > 0))
+                .ThenInclude(x => x.ImageVariants
+                    .Where(c => c.CatalogId == catalogId))    
+                .FirstOrDefault(p => p.Id == productId);
+}
 
         public Product Remove(int id)
         {

@@ -52,14 +52,6 @@ namespace MediaCatalog.RestApi.Controllers
             return new ObjectResult(item);
         }
 
-
-        // GET product/catalog/5
-        [HttpGet("Catalog/{id}", Name = "GetAllProductInCatalog")]
-        public IEnumerable<Product> GetAllProductsInCatalog(int id)
-        {
-            return productManager.GetAllProductsInCatalog(id);
-        }
-
         // POST product
         [HttpPost]
         public IActionResult Post([FromBody] Product product)

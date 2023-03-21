@@ -33,11 +33,23 @@ namespace MediaCatalog.RestApi.Controllers
             productManager = prodManager;
         }
 
-        // GET: product
-        [HttpGet("{id}", Name = "GetProductsInCatalogWithImagesAndImageVariants")]
-        public IEnumerable<Product> Get(int id)
+        // GET: productsInCatalog/1
+        [HttpGet("{catalogId}", Name = "GetProductsInCatalogWithImagesAndImageVariants")]
+        public IEnumerable<Product> Get(int catalogId)
         {
-            return productManager.GetAllProductsInCatalog(id).ToList();
+            return productManager.GetAllProductsInCatalog(catalogId).ToList();
+        }
+
+        // GET productsInCatalog/1/2
+        [HttpGet("{catalogId}/{productId}", Name = "GetInCatalog")]
+        public IActionResult GetInCatalog(int catalogId, int productId)
+        {
+            var item = productManager.GetInCatalog(catalogId, productId);
+            if (item == null)
+            {
+                return NotFound();
+            }
+            return new ObjectResult(item);
         }
     }
 }
