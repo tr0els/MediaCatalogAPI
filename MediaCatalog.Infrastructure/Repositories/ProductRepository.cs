@@ -51,10 +51,8 @@ namespace MediaCatalog.Infrastructure.Repositories
         public IEnumerable<Product> GetAllInCatalog(int id)
         {
             return _ctx.Product
-                .Where(p => p.Images.Any())
-                .Include(p => p.Images
-                    .Where(i => i.ImageVariants.Any()))
-                .ThenInclude(x => x.ImageVariants
+                .Include(p => p.Images)
+                .ThenInclude(i => i.ImageVariants
                     .Where(c => c.CatalogId == id));
         }
 
@@ -62,9 +60,9 @@ namespace MediaCatalog.Infrastructure.Repositories
         {
             return _ctx.Product
                 .Include(p => p.Images
-                    .Where(i => i.ImageVariants.Count > 0))
+                    .Where(x => x.ImageVariants.Any(x => x.CatalogId == catalogId)))
                 .ThenInclude(x => x.ImageVariants
-                    .Where(c => c.CatalogId == catalogId))    
+                    .Where(c => c.CatalogId == catalogId))
                 .FirstOrDefault(p => p.Id == productId);
 }
 

@@ -53,8 +53,6 @@ namespace MediaCatalog.Core.Services
         public Product GetInCatalog(int catalogId, int productId)
         {
             return productRepository.GetInCatalog(catalogId, productId);
-                //.Where(p => p.Id == productId)
-                //.ToList();
         }
 
         public Image AddImageToProduct(Image image)
