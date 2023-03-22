@@ -56,12 +56,20 @@ namespace MediaCatalog.RestApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Image image)
         {
-            if (image == null)
+            var existingImage = imageRepository.Get(image.Id);
+            if (existingImage != null)
             {
                 return BadRequest();
             }
 
-            return null;
+            var exisitingProduct = productRepository.Get(image.ProductId);
+            if (exisitingProduct == null)
+            {
+                return BadRequest();
+            }
+
+            var item = imageRepository.Add(image);
+            return new ObjectResult(item);
         }
 
         // PUT image/5

@@ -45,7 +45,9 @@ namespace MediaCatalog.Core.Services
 
         public List<Product> GetAllProductsInCatalog(int id)
         {
-            return productRepository.GetAllInCatalog(id).ToList();
+            return productRepository.GetAllInCatalog(id)
+                .Where(p => p.Images.Any(i => i.ImageVariants.Any()))
+                .ToList();
         }
 
         public Product GetInCatalog(int catalogId, int productId)

@@ -6,8 +6,7 @@ namespace MediaCatalog.Core.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
-        //public virtual List<Catalog> Catalogs { get; set; }
+        public string SKU { get; set; }
         public List<Image> Images { get; set; }
     }
 }

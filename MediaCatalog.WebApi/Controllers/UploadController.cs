@@ -31,12 +31,8 @@ namespace MediaCatalog.RestApi.Controllers
             {
                 // Grab image info
                 var image = System.Drawing.Image.FromStream(stream);
-                var width = image.HorizontalResolution;
-                var height = image.VerticalResolution;
                 var h = image.Height;
                 var w = image.Width;
-                var size = image.Size;
-                var test = image.PhysicalDimension;
 
                 // Go back to beginning of stream
                 stream.Position = 0;
@@ -48,16 +44,14 @@ namespace MediaCatalog.RestApi.Controllers
                     file.FileName);
 
                 // Save image object with relation to product
-                var newImage = new Image { 
-                    ProductId = 1, 
-                    Name = "Front", 
+                var newImage = new { 
                     Url = result.AbsoluteUri, 
                     Width = w, 
                     Height = h 
                 };
-                var createdImage = productManager.AddImageToProduct(newImage);
+                //var createdImage = productManager.AddImageToProduct(newImage);
 
-                return new OkObjectResult(createdImage);
+                return new OkObjectResult(newImage);
             }
         }
     }

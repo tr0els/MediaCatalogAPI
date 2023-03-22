@@ -48,11 +48,12 @@ namespace MediaCatalog.Infrastructure.Repositories
         }
 
         // Get all products include images and imagevariants
-        // actually a filter on getAll?
         public IEnumerable<Product> GetAllInCatalog(int id)
         {
             return _ctx.Product
-                .Include(p => p.Images.Where(i => i.ImageVariants.Count > 0))
+                .Where(p => p.Images.Any())
+                .Include(p => p.Images
+                    .Where(i => i.ImageVariants.Any()))
                 .ThenInclude(x => x.ImageVariants
                     .Where(c => c.CatalogId == id));
         }
