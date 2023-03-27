@@ -23,38 +23,20 @@ namespace MediaCatalog.Infrastructure.Repositories
             return entity;
         }
 
+        public Catalog Get(int id)
+        {
+            return _ctx.Catalog.FirstOrDefault(c => c.Id == id);
+        }
+
+        public IEnumerable<Catalog> GetAll()
+        {
+            return _ctx.Catalog.ToList();
+        }
         public Catalog Edit(Catalog entity)
         {
             _ctx.Catalog.Attach(entity);
             _ctx.SaveChanges();
             return entity;
-        }
-
-        public Catalog Get(int id)
-        {
-
-            /*
-            return db.Catalog
-                .Include(iv => iv.ImageVariants)
-                .ThenInclude(x => x.Image)
-                .ThenInclude(i => i.Product)
-                .FirstOrDefault(c => c.Id == id);
-            */
-            return _ctx.Catalog.FirstOrDefault(c => c.Id == id);
-            //return db.Catalog.FirstOrDefault(c => c.Id == id);
-        }
-
-        //     .SelectMany(x => x.Employees.Select(e => e.EmployeeId).ToList())
-
-        /*
-        var studentNames = studentList.Where(s => s.Age > 18)
-                                      .Select(s => s)
-                                      .Where(st => st.StandardID > 0)
-                                      .Select(s => s.StudentName);
-        */
-        public IEnumerable<Catalog> GetAll()
-        {
-            return _ctx.Catalog.ToList();
         }
 
         public Catalog Remove(int id)
@@ -64,6 +46,5 @@ namespace MediaCatalog.Infrastructure.Repositories
             _ctx.SaveChanges();
             return entity;
         }
-
     }
 }

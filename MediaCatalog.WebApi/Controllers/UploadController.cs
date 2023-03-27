@@ -49,7 +49,6 @@ namespace MediaCatalog.RestApi.Controllers
                     Width = w, 
                     Height = h 
                 };
-                //var createdImage = productManager.AddImageToProduct(newImage);
 
                 return new OkObjectResult(newImage);
             }

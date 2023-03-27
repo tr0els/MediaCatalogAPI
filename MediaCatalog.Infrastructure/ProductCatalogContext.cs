@@ -18,48 +18,6 @@ namespace MediaCatalog.Infrastructure
         {
             base.OnModelCreating(modelBuilder);
 
-            /*
-            modelBuilder.Entity<Customer>()
-                .HasOne(c => c.Type)
-                .WithMany(ct => ct.Customers)
-                .OnDelete(DeleteBehavior.SetNull);
-
-            modelBuilder.Entity<User>()
-                .HasOne(u => u.Role)
-                .WithMany(r => r.Users)
-                .OnDelete(DeleteBehavior.SetNull);
-
-            modelBuilder.Entity<Order>()
-                .HasOne(o => o.Customer)
-                .WithMany(c => c.Orders)
-                .OnDelete(DeleteBehavior.SetNull);
-
-            modelBuilder.Entity<OrderLine>()
-                .HasKey(ol => new { ol.ProductId, ol.OrderId });
-
-            modelBuilder.Entity<OrderLine>()
-                .HasOne(ol => ol.Order)
-                .WithMany(o => o.OrderLines)
-                .HasForeignKey(ol => ol.OrderId);
-
-            modelBuilder.Entity<OrderLine>()
-                .HasOne(ol => ol.Product)
-                .WithMany(p => p.OrderLines)
-                .HasForeignKey(ol => ol.ProductId);
-            */
-
-            //modelBuilder.Entity<ProductCatalog>()
-            //    .HasKey(iv => new { iv.ProductId, iv.CatalogId });
-
-            /*
-            modelBuilder.Entity<Product>()
-                .HasMany(p => p.Catalogs)
-                .WithMany(c => c.Products);
-            */
-
-
-            // Set catalog,prduct, image name not null + length?
-
             modelBuilder.Entity<Image>()
                 .HasOne(i => i.Product)
                 .WithMany(p => p.Images)

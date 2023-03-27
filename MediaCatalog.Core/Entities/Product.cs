@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace MediaCatalog.Core.Entities
 {
@@ -7,6 +8,7 @@ namespace MediaCatalog.Core.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public string SKU { get; set; }
+        public DateTime CreatedDate { get; set; }
         public List<Image> Images { get; set; }
     }
 }

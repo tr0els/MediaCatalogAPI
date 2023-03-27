@@ -6,14 +6,13 @@ namespace MediaCatalog.Core.Interfaces
 {
     public interface ICatalogManager
     {
-        // Catalog services
-        // Here or just goes to controller?
         Catalog CreateCatalog(Catalog catalog);
-        //List<Catalog> GetAllCatalogs();
-
-        // Validation & tests missing
-
-        // ImageVariant services
-        ImageVariant AddImageVariantToCatalog(ImageVariant imageVariant); // think - h&w = 0 for org?
+        Catalog GetCatalog(int id);
+        List<Catalog> GetAllCatalogs();
+        Catalog EditCatalog(Catalog catalog);
+        Catalog DeleteCatalog(int id);
+        ImageVariant AddImageVariantToCatalog(ImageVariant imageVariant);
+        List<Product> GetAllProductsInCatalog(int id);
+        Product GetProductInCatalog(int catalogId, int productId);
     }
 }

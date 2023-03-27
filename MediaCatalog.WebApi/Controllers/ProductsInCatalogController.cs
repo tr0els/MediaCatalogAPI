@@ -35,16 +35,16 @@ namespace MediaCatalog.RestApi.Controllers
 
         // GET: productsInCatalog/1
         [HttpGet("{catalogId}", Name = "GetProductsInCatalogWithImagesAndImageVariants")]
-        public IEnumerable<Product> Get(int catalogId)
+        public IEnumerable<Product> GetAllProductsInCatalog(int catalogId)
         {
-            return productManager.GetAllProductsInCatalog(catalogId).ToList();
+            return catalogManager.GetAllProductsInCatalog(catalogId).ToList();
         }
 
         // GET productsInCatalog/1/2
         [HttpGet("{catalogId}/{productId}", Name = "GetInCatalog")]
-        public IActionResult GetInCatalog(int catalogId, int productId)
+        public IActionResult GetProductInCatalog(int catalogId, int productId)
         {
-            var item = productManager.GetInCatalog(catalogId, productId);
+            var item = catalogManager.GetProductInCatalog(catalogId, productId);
             if (item == null)
             {
                 return NotFound();

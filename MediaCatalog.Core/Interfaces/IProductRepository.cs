@@ -5,7 +5,7 @@ namespace MediaCatalog.Core.Interfaces
 {
     public interface IProductRepository<T> : IRepository<T>
     {
-        IEnumerable<Product> GetAllInCatalog(int id);
-        Product GetInCatalog(int catalogId, int productId);
+        IEnumerable<Product> GetAllProductsInCatalog(int id);
+        Product GetProductInCatalog(int catalogId, int productId);
     }
 }

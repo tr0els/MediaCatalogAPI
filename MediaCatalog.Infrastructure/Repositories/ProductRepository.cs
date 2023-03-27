@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MediaCatalog.Core.Entities;
 using MediaCatalog.Core.Interfaces;
-using MediaCatalog.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace MediaCatalog.Infrastructure.Repositories
 {
@@ -44,11 +42,12 @@ namespace MediaCatalog.Infrastructure.Repositories
 
         public IEnumerable<Product> GetAll()
         {
-            return _ctx.Product;
+            return _ctx.Product
+                .Include(p => p.Images);
         }
 
         // Get all products include images and imagevariants
-        public IEnumerable<Product> GetAllInCatalog(int id)
+        public IEnumerable<Product> GetAllProductsInCatalog(int id)
         {
             return _ctx.Product
                 .Include(p => p.Images
@@ -57,7 +56,7 @@ namespace MediaCatalog.Infrastructure.Repositories
                     .Where(c => c.CatalogId == id));
         }
 
-        public Product GetInCatalog(int catalogId, int productId)
+        public Product GetProductInCatalog(int catalogId, int productId)
         {
             return _ctx.Product
                 .Include(p => p.Images
@@ -69,8 +68,6 @@ namespace MediaCatalog.Infrastructure.Repositories
 
         public Product Remove(int id)
         {
-            // The Single method below throws an InvalidOperationException  <-------
-            // if there is not exactly one room with the specified Id.
             var entity = _ctx.Product.Single(c => c.Id == id);
             _ctx.Product.Remove(entity);
             _ctx.SaveChanges();

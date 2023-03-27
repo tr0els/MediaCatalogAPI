@@ -34,25 +34,13 @@ namespace MediaCatalog.Core.Services
 
         public Product CreateProduct(Product product)
         {
-
+            product.CreatedDate = DateTime.Now;
             return productRepository.Add(product);
         }
 
         public List<Product> GetAllProducts()
         {
             return productRepository.GetAll().ToList();
-        }
-
-        public List<Product> GetAllProductsInCatalog(int id)
-        {
-            return productRepository.GetAllInCatalog(id)
-                .Where(p => p.Images.Any(i => i.ImageVariants.Any()))
-                .ToList();
-        }
-
-        public Product GetInCatalog(int catalogId, int productId)
-        {
-            return productRepository.GetInCatalog(catalogId, productId);
         }
 
         public Image AddImageToProduct(Image image)

@@ -33,9 +33,9 @@ namespace MediaCatalog.Infrastructure
 
             List<Product> products = new List<Product>
             {
-                new Product { Name="Tuborg Classic" },
-                new Product { Name="Slots Pilsner" },
-                new Product { Name="Carls Special" },
+                new Product { SKU="1234-001", Name="Tuborg Classic", CreatedDate=DateTime.Now.ToUniversalTime() },
+                new Product { SKU="1234-002", Name="Slots Pilsner", CreatedDate=DateTime.Now.ToUniversalTime() },
+                new Product { SKU="1234-003", Name="Carls Special", CreatedDate=DateTime.Now.ToUniversalTime() },
             };
 
             List<Image> images = new List<Image>

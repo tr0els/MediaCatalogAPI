@@ -33,8 +33,6 @@ namespace MediaCatalog.Infrastructure.Repositories
 
         public ImageVariant Get(int id)
         {
-            // The FirstOrDefault method below returns null
-            // if there is no room with the specified Id.
             return _ctx.ImageVariant
                 .Include(i => i.Image)
                 .FirstOrDefault(c => c.Id == id);
@@ -47,8 +45,6 @@ namespace MediaCatalog.Infrastructure.Repositories
 
         public ImageVariant Remove(int id)
         {
-            // The Single method below throws an InvalidOperationException  <-------
-            // if there is not exactly one room with the specified Id.
             var entity = _ctx.ImageVariant.Single(c => c.Id == id);
             _ctx.ImageVariant.Remove(entity);
             _ctx.SaveChanges();

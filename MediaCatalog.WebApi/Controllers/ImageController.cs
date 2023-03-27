@@ -56,6 +56,8 @@ namespace MediaCatalog.RestApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Image image)
         {
+            var createdImage = productManager.AddImageToProduct(image);
+
             var existingImage = imageRepository.Get(image.Id);
             if (existingImage != null)
             {
@@ -87,12 +89,6 @@ namespace MediaCatalog.RestApi.Controllers
             {
                 return NotFound();
             }
-
-            // This implementation will only modify the booking's state and customer.
-            // It is not safe to directly modify StartDate, EndDate and Room, because
-            // it could conflict with other active bookings.
-            //modifiedBooking.IsActive = booking.IsActive;
-            //modifiedBooking.CustomerId = booking.CustomerId;
 
             imageRepository.Edit(modifiedImage);
             return NoContent();
