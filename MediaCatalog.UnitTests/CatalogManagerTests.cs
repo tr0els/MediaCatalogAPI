@@ -235,6 +235,18 @@ namespace MediaCatalog.UnitTests
         [Fact]
         public void DeleteCatalog_WhenCatalogExists_ShouldCallCatalogRepoOnce()
         {
+            // Arrange
+            var existingCatalog = new Catalog()
+            {
+                Id = 1,
+                Name = "Name"
+            };
+
+            // Making sure the catalog exists before test
+            fakeCatalogRepo.Setup(repo => repo
+                .Get(It.Is<int>(id => id == existingCatalog.Id)))
+                .Returns(() => existingCatalog);
+
             // Act
             catalogManager.DeleteCatalog(1);
 
@@ -243,20 +255,17 @@ namespace MediaCatalog.UnitTests
         }
 
         [Fact]
-        public void DeleteCatalog_WhenIdDoesNotExist_RemoveThrowsExceptionAndShouldCallCatalogRepoOnce()
+        public void DeleteCatalog_WhenIdDoesNotExist_RemoveThrowsExceptionAndShouldCallCatalogRepoNever()
         {
             // Arrange
-            // Instruct fake Remove method to throw an InvalidOperationException
-            // if id does not exist in the repository
-            fakeCatalogRepo.Setup(repo => repo
-                    .Remove(It.Is<int>(id => id < 1 || id > 2))).
-                    Throws<InvalidOperationException>();
 
             // Act + Assert
-            Assert.Throws<InvalidOperationException>(() => catalogManager.DeleteCatalog(3));
+            Action act = () => catalogManager.DeleteCatalog(3);
 
             // Assert
-            fakeCatalogRepo.Verify(repo => repo.Remove(It.IsAny<int>()), Times.Once());
+            Exception ex = Assert.Throws<ArgumentException>(act);
+            Assert.Equal("Catalog not found", ex.Message);
+            fakeCatalogRepo.Verify(repo => repo.Remove(It.IsAny<int>()), Times.Never());
         }
 
         [Fact]
