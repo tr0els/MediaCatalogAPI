@@ -17,7 +17,6 @@ steps:
     projects: '**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-
 # Test
 - task: DotNetCoreCLI@2
   displayName: Testing
@@ -29,7 +28,7 @@ steps:
 
 # Run the API in the background
 - task: CmdLine@2
-  displayName: Run the WebApi in the background
+  displayName: Run the Api in the background
   inputs:
     script: 'dotnet $(Build.SourcesDirectory)/MediaCatalog.RestApi/bin/$(buildConfiguration)/net6.0/MediaCatalog.RestApi.dll &'
 
