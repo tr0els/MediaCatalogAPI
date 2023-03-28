@@ -36,10 +36,11 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Setup CORS
+/*
 app.UseCors(builder =>
 {
     builder
-          .WithOrigins("http://localhost:4200", "https://localhost:4200")
+          .WithOrigins()
           .SetIsOriginAllowedToAllowWildcardSubdomains()
           .AllowAnyHeader()
           .AllowCredentials()
@@ -47,6 +48,7 @@ app.UseCors(builder =>
           .SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
 }
 );
+*/
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -68,7 +70,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseCors();
+//app.UseCors();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
