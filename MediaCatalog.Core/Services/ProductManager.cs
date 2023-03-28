@@ -38,6 +38,11 @@ namespace MediaCatalog.Core.Services
             return productRepository.Add(product);
         }
 
+        public Product GetProduct(int id)
+        {
+            return productRepository.Get(id);
+        }
+
         public List<Product> GetAllProducts()
         {
             return productRepository.GetAll().ToList();
@@ -45,6 +50,10 @@ namespace MediaCatalog.Core.Services
 
         public Image AddImageToProduct(Image image)
         {
+            var exisitingProduct = productRepository.Get(image.ProductId);
+            if (exisitingProduct == null)
+                throw new ArgumentException("Product was not found");
+
             return imageRepository.Add(image);
         }
 

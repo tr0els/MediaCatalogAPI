@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MediaCatalog.Core.Entities
 {
-    // could be named CatalogImage if that makes more sense - this will be modelled in db as a jointable
     public class ImageVariant
     {
         public int Id { get; set; }

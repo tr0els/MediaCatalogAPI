@@ -146,6 +146,93 @@ namespace MediaCatalog.UnitTests
         }
 
         [Fact]
+        public void UpdateCatalog_WithCatalogIdLessThanOne_ShouldThrowException()
+        {
+            // Arrange
+            var catalogToUpdate = new Catalog()
+            {
+                Id = 0,
+                Name = "Updated name"
+            };
+
+            // Making sure the catalog exists before test
+            fakeCatalogRepo.Setup(repo => repo
+                .Get(It.Is<int>(id => id == catalogToUpdate.Id)))
+                .Returns(() => catalogToUpdate);
+
+            // Act
+            Action act = () => catalogManager.EditCatalog(catalogToUpdate);
+
+            // Assert
+            Exception ex = Assert.Throws<ArgumentException>(act);
+            Assert.Equal("No catalog was given", ex.Message);
+        }
+
+        [Fact]
+        public void UpdateCatalog_WithCatalogIdNotExisting_ShouldThrowException()
+        {
+            // Arrange
+            var catalogToUpdate = new Catalog()
+            {
+                Id = 10,
+                Name = "Updated name"
+            };
+
+            // Act
+            Action act = () => catalogManager.EditCatalog(catalogToUpdate);
+
+            // Assert
+            Exception ex = Assert.Throws<ArgumentException>(act);
+            Assert.Equal("Catalog not found", ex.Message);
+        }
+
+        [Fact]
+        public void UpdateCatalog_WithNameMissing_ShouldThrowException()
+        {
+            // Arrange
+            var existingCatalog = new Catalog()
+            {
+                Id = 1,
+                Name = "Name"
+            };
+
+            // Making sure the catalog exists before test
+            fakeCatalogRepo.Setup(repo => repo
+                .Get(It.Is<int>(id => id == existingCatalog.Id)))
+                .Returns(() => existingCatalog);
+
+            var catalogToUpdate = new Catalog()
+            {
+                Id = 1
+            };
+
+            // Act
+            Action act = () => catalogManager.EditCatalog(catalogToUpdate);
+
+            // Assert
+            Exception ex = Assert.Throws<ArgumentException>(act);
+            Assert.Equal("A name must be given", ex.Message);
+        }
+
+        [Fact]
+        public void UpdateCatalog_WithNameAlreadyExists_ThrowsException()
+        {
+            // Arrange
+            var catalog = new Catalog()
+            {
+                Id = 1,
+                Name = "Catalog 1"
+            };
+
+            // Act
+            Action act = () => catalogManager.CreateCatalog(catalog);
+
+            // Assert
+            Exception ex = Assert.Throws<ArgumentException>(act);
+            Assert.Equal("Catalog name already exists", ex.Message);
+        }
+
+        [Fact]
         public void DeleteCatalog_WhenCatalogExists_ShouldCallCatalogRepoOnce()
         {
             // Act

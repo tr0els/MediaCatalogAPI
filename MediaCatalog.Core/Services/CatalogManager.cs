@@ -46,20 +46,46 @@ namespace MediaCatalog.Core.Services
 
         public Catalog GetCatalog(int id)
         {
-            return catalogRepository.Get(id);
+            if (id <= 0)
+                throw new ArgumentException("No catalog was given");
+            var catalog = catalogRepository.Get(id);
+            if (catalog == null)
+                throw new ArgumentException("Catalog not found");
+
+            return catalog;
         }
         public Catalog EditCatalog(Catalog catalog)
         {
+            if (catalog.Id <= 0)
+                throw new ArgumentException("No catalog was given");
+            var existingCatalog = catalogRepository.Get(catalog.Id);
+            if (existingCatalog == null)
+                throw new ArgumentException("Catalog not found");
+            if (string.IsNullOrEmpty(catalog.Name))
+                throw new ArgumentException("A name must be given");
+            if (catalogRepository.GetAll().Where(c => c.Name == catalog.Name).Any() == true)
+                throw new ArgumentException("Catalog name already exists");
+
             return catalogRepository.Edit(catalog);
         }
 
         public Catalog DeleteCatalog(int id)
         {
+            if (id <= 0)
+                throw new ArgumentException("No catalog was given");
+            if (catalogRepository.Get(id) == null)
+                throw new ArgumentException("Catalog not found");
+
             return catalogRepository.Remove(id);
         }
 
         public List<Product> GetAllProductsInCatalog(int id)
         {
+            if (id <= 0)
+                throw new ArgumentException("No catalog was given");
+            if (catalogRepository.Get(id) == null)
+                throw new ArgumentException("Catalog not found");
+
             return productRepository.GetAllProductsInCatalog(id)
                 .Where(p => p.Images.Any(i => i.ImageVariants.Any()))
                 .ToList();
@@ -67,6 +93,15 @@ namespace MediaCatalog.Core.Services
 
         public Product GetProductInCatalog(int catalogId, int productId)
         {
+            if (catalogId <= 0)
+                throw new ArgumentException("No catalog was given");
+            if (catalogRepository.Get(catalogId) == null)
+                throw new ArgumentException("Catalog not found");
+            if (productId <= 0)
+                throw new ArgumentException("No product was given");
+            if (productRepository.Get(productId) == null)
+                throw new ArgumentException("Product not found");
+
             return productRepository.GetProductInCatalog(catalogId, productId);
         }
 
@@ -86,12 +121,14 @@ namespace MediaCatalog.Core.Services
                 throw new ArgumentException("Dimension size is below minimum");
             if (imageVariant.Width * imageVariant.Height > 48000000)
                 throw new ArgumentException("Dimension size is above maximum");
-            if (imageVariantRepository.GetAll().FirstOrDefault(iv => 
-                iv.CatalogId == imageVariant.Id &&
-                iv.ImageId == imageVariant.Id &&
+            if (imageVariantRepository.GetAll().FirstOrDefault(iv =>
+                iv.CatalogId == imageVariant.CatalogId &&
+                iv.ImageId == imageVariant.ImageId &&
                 iv.Width == imageVariant.Width &&
                 iv.Height == imageVariant.Height) != null)
+            {
                 throw new ArgumentException("This image with the given width and height already exists in this catalog");
+            }
 
             return imageVariantRepository.Add(imageVariant);
         }

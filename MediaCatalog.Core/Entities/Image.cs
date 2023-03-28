@@ -2,9 +2,6 @@
 
 namespace MediaCatalog.Core.Entities
 {
-    // This should be added to a collection like an Order has OrderLine(s) of Product(s)
-    // a Catalog is a list of Products that has Images that has Variants
-    // so how does one make an order?
     public class Image
     {
         public int Id { get; set; }

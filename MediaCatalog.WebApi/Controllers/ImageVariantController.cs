@@ -31,14 +31,14 @@ namespace MediaCatalog.RestApi.Controllers
             catalogManager = manager;
         }
 
-        // GET: imageVariant
+        // GET: imageVariants
         [HttpGet(Name = "GetImageVariants")]
         public IEnumerable<ImageVariant> Get()
         {
             return imageVariantRepository.GetAll();
         }
 
-        // GET catalogs/5
+        // GET imageVariant/5
         [HttpGet("{id}", Name = "GetImageVariant")]
         public IActionResult Get(int id)
         {
@@ -50,7 +50,7 @@ namespace MediaCatalog.RestApi.Controllers
             return new ObjectResult(item);
         }
 
-        // POST catalog
+        // POST imageVariant
         [HttpPost]
         public IActionResult Post([FromBody] ImageVariant imageVariant)
         {
@@ -69,33 +69,7 @@ namespace MediaCatalog.RestApi.Controllers
                 return BadRequest(e.Message);
             }
         }
-        /*
-        // PUT catalog/5
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Catalog catalog)
-        {
-            if (catalog == null || catalog.Id != id)
-            {
-                return BadRequest();
-            }
 
-            var modifiedCatalog = catalogRepository.Get(id);
-
-            if (modifiedCatalog == null)
-            {
-                return NotFound();
-            }
-
-            // This implementation will only modify the booking's state and customer.
-            // It is not safe to directly modify StartDate, EndDate and Room, because
-            // it could conflict with other active bookings.
-            //modifiedBooking.IsActive = booking.IsActive;
-            //modifiedBooking.CustomerId = booking.CustomerId;
-
-            catalogRepository.Edit(modifiedCatalog);
-            return NoContent();
-        }
-        */
         // DELETE imageVariant/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

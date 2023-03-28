@@ -3,6 +3,7 @@ using MediaCatalog.Core.Entities;
 using MediaCatalog.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using MediaCatalog.Core.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace MediaCatalog.RestApi.Controllers
 {
@@ -56,22 +57,15 @@ namespace MediaCatalog.RestApi.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Image image)
         {
-            var createdImage = productManager.AddImageToProduct(image);
-
-            var existingImage = imageRepository.Get(image.Id);
-            if (existingImage != null)
+            try
             {
-                return BadRequest();
+                var createdImage = productManager.AddImageToProduct(image);
+                return new ObjectResult(createdImage);
             }
-
-            var exisitingProduct = productRepository.Get(image.ProductId);
-            if (exisitingProduct == null)
+            catch (ArgumentException ex)
             {
-                return BadRequest();
+                return BadRequest(ex.Message);
             }
-
-            var item = imageRepository.Add(image);
-            return new ObjectResult(item);
         }
 
         // PUT image/5

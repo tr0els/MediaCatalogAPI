@@ -34,14 +34,14 @@ namespace MediaCatalog.RestApi.Controllers
         [HttpGet(Name = "GetCatalogs")]
         public IEnumerable<Catalog> Get()
         {
-            return catalogRepository.GetAll();
+            return catalogManager.GetAllCatalogs();
         }
 
         // GET catalogs/5
         [HttpGet("{id}", Name = "GetCatalog")]
         public IActionResult Get(int id)
         {
-            var item = catalogRepository.Get(id);
+            var item = catalogManager.GetCatalog(id);
             if (item == null)
             {
                 return NotFound();
@@ -58,57 +58,43 @@ namespace MediaCatalog.RestApi.Controllers
                 return BadRequest();
             }
 
-            catalogManager.CreateCatalog(catalog);
-
-            return CreatedAtRoute("GetCatalogs", null);
-
-            /*
-            bool created = catalogManager.CreateCatalog(catalog);
-
-            if (created)
-            {
-                return CreatedAtRoute("GetCatalogs", null);
+            try {
+                var createdCatalog = catalogManager.CreateCatalog(catalog);
+                return CreatedAtRoute("GetCatalogs", createdCatalog);
             }
-            else
+            catch (ArgumentException ex)
             {
-                return Conflict("The catalog could not be created.");
+                return BadRequest(ex.Message);
             }
-            */
-
         }
 
         // PUT catalog/5
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Catalog catalog)
         {
-            if (catalog == null || catalog.Id != id)
-            {
-                return BadRequest();
+            try {
+                var updatedCatalog = catalogRepository.Edit(catalog);
+                return new ObjectResult(updatedCatalog);
             }
-
-            var modifiedCatalog = catalogRepository.Get(id);
-
-            if (modifiedCatalog == null)
+            catch (ArgumentException ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
-
-            catalogRepository.Edit(modifiedCatalog);
-            return NoContent();
         }
 
         // DELETE catalogs/5
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (catalogRepository.Get(id) == null)
+            try
             {
-                return NotFound();
+                var deletedCatalog = catalogRepository.Remove(id);
+                return new ObjectResult(deletedCatalog);
             }
-
-            catalogRepository.Remove(id);
-            return NoContent();
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-
     }
 }
