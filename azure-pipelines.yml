@@ -23,14 +23,13 @@ steps:
   inputs:
     command: test
     projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover' # Collect data using Coverlet DataCollector
-    workingDirectory: $(Build.SourcesDirectory)
+    arguments: '--configuration $(buildConfiguration)'
 
 # Run the API in the background
 - task: CmdLine@2
   displayName: Run the Api in the background
   inputs:
-    script: 'dotnet $(Build.SourcesDirectory)/MediaCatalog.RestApi/bin/$(buildConfiguration)/net6.0/MediaCatalog.RestApi.dll &'
+    script: 'dotnet $(Build.SourcesDirectory)/MediaCatalog.RestApi/bin/$(buildConfiguration)/net7.0/MediaCatalog.RestApi.dll &'
 
 # Install Newman
 - task: Npm@1
