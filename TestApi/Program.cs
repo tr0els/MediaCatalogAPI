@@ -37,17 +37,7 @@ var app = builder.Build();
 
 // Setup CORS
 
-app.UseCors(builder =>
-{
-    builder
-          .WithOrigins("http://localhost:4200", "https://localhost:4200")
-          .SetIsOriginAllowedToAllowWildcardSubdomains()
-          .AllowAnyHeader()
-          .AllowCredentials()
-          .WithMethods("GET", "PUT", "POST", "DELETE", "OPTIONS")
-          .SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
-}
-);
+
 
 
 // Configure the HTTP request pipeline.
