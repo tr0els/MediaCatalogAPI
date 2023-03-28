@@ -6,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaCatalog.Core", "MediaC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaCatalog.Infrastructure", "MediaCatalog.Infrastructure\MediaCatalog.Infrastructure.csproj", "{39F65491-68CB-4C8A-B08C-5EA0DBF8F21E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaCatalog.RestApi", "MediaCatalog.WebApi\MediaCatalog.RestApi.csproj", "{2A98B98E-16D8-4F8D-A2D2-E4C4377CBB30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaCatalog.RestApi", "MediaCatalog.RestApi\MediaCatalog.RestApi.csproj", "{2A98B98E-16D8-4F8D-A2D2-E4C4377CBB30}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaCatalog.UnitTests", "MediaCatalog.UnitTests\MediaCatalog.UnitTests.csproj", "{948FC246-C8EA-4C12-983C-139B5D2BFBC1}"
 EndProject

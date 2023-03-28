@@ -24,6 +24,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MediaCatalog.Core\MediaCatalog.Core.csproj" />
-    <ProjectReference Include="..\MediaCatalog.WebApi\MediaCatalog.RestApi.csproj" />
+    <ProjectReference Include="..\MediaCatalog.RestApi\MediaCatalog.RestApi.csproj" />
   </ItemGroup>
 </Project>
