@@ -64,10 +64,7 @@ if (app.Environment.IsDevelopment())
         var dbInitializer = services.GetService<IDbInitializer>();
         dbInitializer.Initialize(dbContext);
     }
-} else
-{
-    app.UseHsts();
-}
+ }
 
 app.UseHttpsRedirection();
 //app.UseCors();
