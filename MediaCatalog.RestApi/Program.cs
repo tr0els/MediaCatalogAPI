@@ -36,6 +36,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Setup CORS
+
 app.UseCors(builder =>
 {
     builder
@@ -47,6 +48,7 @@ app.UseCors(builder =>
           .SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
 }
 );
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
