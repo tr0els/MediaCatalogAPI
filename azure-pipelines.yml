@@ -62,8 +62,8 @@ steps:
     command: 'custom'
     customCommand: 'install newman -g'
 
-#Run Postman api tests
-#- task: CmdLine@2
-#  displayName: Run Postman tests
-#  inputs:
-#    script: 'newman run $(Build.SourcesDirectory)/PostmanApiTests/MediaCatalog.postman_tests_collection.json -k -r cli --folder tests'
+# Run Postman controller tests
+- task: CmdLine@2
+  displayName: Run Postman tests
+  inputs:
+    script: 'newman run $(Build.SourcesDirectory)/PostmanControllerTests/ControllerTests.postman_collection.json -k -r cli'
