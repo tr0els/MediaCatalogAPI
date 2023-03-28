@@ -1,1 +1,1 @@
-# ProductCatalog
+# MediaCatalog backend
