@@ -29,7 +29,7 @@ steps:
 - task: CmdLine@2
   displayName: Run the Api in the background
   inputs:
-    script: 'dotnet $(Build.SourcesDirectory)/MediaCatalog.RestApi/bin/$(buildConfiguration)/net7.0/MediaCatalog.RestApi.dll'
+    script: 'dotnet $(Build.SourcesDirectory)/MediaCatalog.RestApi/bin/$(buildConfiguration)/net7.0/MediaCatalog.RestApi.dll &'
 
 # Install Newman
 - task: Npm@1
