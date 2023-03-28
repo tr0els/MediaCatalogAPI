@@ -35,8 +35,8 @@
 					"raw": "{\n    \"name\": \"Catalog 1\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:{{port}}/catalog",
-					"protocol": "https",
+					"raw": "http://localhost:{{port}}/catalog",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -77,8 +77,8 @@
 					"raw": "{\n    \"name\": \"Catalog 2\"\n}"
 				},
 				"url": {
-					"raw": "https://localhost:{{port}}/catalog",
-					"protocol": "https",
+					"raw": "http://localhost:{{port}}/catalog",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -130,8 +130,8 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:{{port}}/catalog",
-					"protocol": "https",
+					"raw": "http://localhost:{{port}}/catalog",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -162,8 +162,8 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:{{port}}/catalog/0",
-					"protocol": "https",
+					"raw": "http://localhost:{{port}}/catalog/0",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -195,8 +195,8 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:{{port}}/catalog/2",
-					"protocol": "https",
+					"raw": "http://localhost:{{port}}/catalog/2",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -246,8 +246,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:{{port}}/catalog/1",
-					"protocol": "https",
+					"raw": "http://localhost:{{port}}/catalog/1",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -288,8 +288,8 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://localhost:{{port}}/catalog/2",
-					"protocol": "https",
+					"raw": "http://localhost:{{port}}/catalog/2",
+					"protocol": "http",
 					"host": [
 						"localhost"
 					],
@@ -326,7 +326,7 @@
 	"variable": [
 		{
 			"key": "port",
-			"value": "5001"
+			"value": "5000"
 		}
 	]
 }
