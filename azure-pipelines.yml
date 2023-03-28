@@ -26,34 +26,12 @@ steps:
     projects: '**/*Tests/*.csproj'
     arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover' # Collect data using Coverlet DataCollector
     workingDirectory: $(Build.SourcesDirectory)
-  
-# Generate report from collected data - seemingly only necessary for Azure DevOps report
-#- task: reportgenerator@5
-#  inputs:
-#    reports: $(Agent.TempDirectory)/**/coverage.cobertura.xml
-#    targetdir: $(Build.SourcesDirectory)/coverlet/reports
-#    reporttypes: 'HtmlInline_AzurePipelines;Cobertura'
 
-# Publish code results to Azure DevOps
-#- task: PublishCodeCoverageResults@1
-#  displayName: 'Publish code coverage'
-#  inputs:
-#    codeCoverageTool: Cobertura
-#    summaryFileLocation: $(Build.SourcesDirectory)/coverlet/reports/Cobertura.xml
-
-# SonarCloud Run Code Analysis
-#- task: SonarCloudAnalyze@1
-
-# SonarCloud Publish Quality Gate Result
-#- task: SonarCloudPublish@1
-#  inputs:
-#    pollingTimeoutSec: '300'
-
-# Run the Web API in the background
+# Run the API in the background
 - task: CmdLine@2
   displayName: Run the WebApi in the background
   inputs:
-    script: 'dotnet $(Build.SourcesDirectory)/MediaCatalog.WebApi/bin/$(buildConfiguration)/net6.0/MEdiaCatalog.RestApi.dll &'
+    script: 'dotnet $(Build.SourcesDirectory)/MediaCatalog.RestApi/bin/$(buildConfiguration)/net6.0/MediaCatalog.RestApi.dll &'
 
 # Install Newman
 - task: Npm@1
