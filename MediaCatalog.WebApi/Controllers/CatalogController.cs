@@ -41,7 +41,7 @@ namespace MediaCatalog.RestApi.Controllers
         [HttpGet("{id}", Name = "GetCatalog")]
         public IActionResult Get(int id)
         {
-            var item = catalogManager.GetCatalog(id);
+            var item = catalogRepository.Get(id);
             if (item == null)
             {
                 return NotFound();
