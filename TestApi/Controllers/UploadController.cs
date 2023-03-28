@@ -30,7 +30,7 @@ namespace MediaCatalog.RestApi.Controllers
             using (var stream = file.OpenReadStream())
             {
                 // Grab image info
-                var image = System.Drawing.Image.FromStream(stream);
+                //var image = System.Drawing.Image.FromStream(stream);
                 var h = image.Height;
                 var w = image.Width;
 
