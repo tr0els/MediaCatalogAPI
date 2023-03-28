@@ -5,8 +5,6 @@ using MediaCatalog.Core.Interfaces;
 using MediaCatalog.Core.Entities;
 using MediaCatalog.Core.Services;
 using System.Collections.Generic;
-using Microsoft.Extensions.Logging;
-using Microsoft.AspNetCore.Mvc;
 
 namespace MediaCatalog.UnitTests
 {
