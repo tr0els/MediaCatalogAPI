@@ -23,8 +23,7 @@ steps:
   inputs:
     command: test
     projects: '**/*Tests/*.csproj'
-    arguments: '--configuration $(buildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura,opencover' # Collect data using Coverlet DataCollector
-    workingDirectory: $(Build.SourcesDirectory)
+    arguments: '--configuration $(buildConfiguration)'
 
 # Run the API in the background
 - task: CmdLine@2
