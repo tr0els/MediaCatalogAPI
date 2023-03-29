@@ -2,7 +2,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest '
 
 variables:
   buildConfiguration: 'Release'
@@ -42,4 +42,5 @@ steps:
 - task: CmdLine@2
   displayName: Run Postman tests
   inputs:
-    script: 'newman run $(Build.SourcesDirectory)/PostmanControllerTests/ControllerTests.postman_collection.json -k -r cli'
+    script: 'newman run $(Build.SourcesDirectory)/PostmanControllerTests/ControllerTests.postman_collection.json -k -r cli --folder tests'
+    
