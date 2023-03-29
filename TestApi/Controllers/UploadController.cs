@@ -30,9 +30,9 @@ namespace MediaCatalog.RestApi.Controllers
             using (var stream = file.OpenReadStream())
             {
                 // Grab image info
-                //var image = System.Drawing.Image.FromStream(stream);
-                //var h = image.Height;
-                //var w = image.Width;
+                var image = System.Drawing.Image.FromStream(stream);
+                var h = image.Height;
+                var w = image.Width;
 
                 // Go back to beginning of stream
                 stream.Position = 0;
@@ -46,8 +46,8 @@ namespace MediaCatalog.RestApi.Controllers
                 // Save image object with relation to product
                 var newImage = new { 
                     Url = result.AbsoluteUri, 
-                    Width = 100, 
-                    Height = 100 
+                    Width = h, 
+                    Height = w 
                 };
 
                 return new OkObjectResult(newImage);
