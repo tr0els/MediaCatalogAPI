@@ -1,5 +1,4 @@
-﻿using Azure.Storage.Blobs;
-using MediaCatalog.Core.Entities;
+﻿using MediaCatalog.Core.Entities;
 using MediaCatalog.Core.Interfaces;
 using System;
 using System.Collections.Generic;

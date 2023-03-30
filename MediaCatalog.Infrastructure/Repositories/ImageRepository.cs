@@ -1,17 +1,15 @@
-﻿using System;
+﻿using MediaCatalog.Core.Entities;
+using MediaCatalog.Core.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using MediaCatalog.Core.Entities;
-using MediaCatalog.Core.Interfaces;
-using MediaCatalog.Infrastructure;
 
 namespace MediaCatalog.Infrastructure.Repositories
 {
     public class ImageRepository : IRepository<Image>
     {
-        private readonly ProductCatalogContext _ctx;
+        private readonly MediaCatalogContext _ctx;
 
-        public ImageRepository(ProductCatalogContext context)
+        public ImageRepository(MediaCatalogContext context)
         {
             _ctx = context;
         }

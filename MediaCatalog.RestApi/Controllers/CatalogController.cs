@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MediaCatalog.Core.Entities;
+﻿using MediaCatalog.Core.Entities;
 using MediaCatalog.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -58,7 +57,8 @@ namespace MediaCatalog.RestApi.Controllers
                 return BadRequest();
             }
 
-            try {
+            try
+            {
                 var createdCatalog = catalogManager.CreateCatalog(catalog);
                 return CreatedAtRoute("GetCatalogs", createdCatalog);
             }
@@ -72,7 +72,8 @@ namespace MediaCatalog.RestApi.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Catalog catalog)
         {
-            try {
+            try
+            {
                 var updatedCatalog = catalogRepository.Edit(catalog);
                 return new ObjectResult(updatedCatalog);
             }

@@ -1,5 +1,4 @@
 ﻿using MediaCatalog.Core.Entities;
-using System;
 using System.Collections.Generic;
 
 namespace MediaCatalog.Core.Interfaces

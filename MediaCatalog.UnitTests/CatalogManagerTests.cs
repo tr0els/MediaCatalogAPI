@@ -1,10 +1,10 @@
-using System;
-using Xunit;
-using Moq;
-using MediaCatalog.Core.Interfaces;
 using MediaCatalog.Core.Entities;
+using MediaCatalog.Core.Interfaces;
 using MediaCatalog.Core.Services;
+using Moq;
+using System;
 using System.Collections.Generic;
+using Xunit;
 
 namespace MediaCatalog.UnitTests
 {
@@ -426,38 +426,38 @@ namespace MediaCatalog.UnitTests
         {
             // Arrange
             var catalog = new Catalog()
-        {
-            Id = 1
+            {
+                Id = 1
             };
 
-        // Making sure the catalog exists before test
-        fakeCatalogRepo.Setup(repo => repo
-            .Get(It.Is<int>(id => id == catalog.Id)))
-                .Returns(() => catalog);
+            // Making sure the catalog exists before test
+            fakeCatalogRepo.Setup(repo => repo
+                .Get(It.Is<int>(id => id == catalog.Id)))
+                    .Returns(() => catalog);
 
-        var image = new Image()
-        {
-            Id = 1,
-        };
+            var image = new Image()
+            {
+                Id = 1,
+            };
 
-        // Making sure the image exists before test
-        fakeImageRepo.Setup(repo => repo
-            .Get(It.Is<int>(id => id == image.Id)))
-                .Returns(() => image);
+            // Making sure the image exists before test
+            fakeImageRepo.Setup(repo => repo
+                .Get(It.Is<int>(id => id == image.Id)))
+                    .Returns(() => image);
 
-        var imageVariantToAdd = new ImageVariant()
-        {
-            Id = 1,
-            ImageId = 1,
-            CatalogId = 1
-        };
+            var imageVariantToAdd = new ImageVariant()
+            {
+                Id = 1,
+                ImageId = 1,
+                CatalogId = 1
+            };
 
-        // Act
-        Action act = () => catalogManager.AddImageVariantToCatalog(imageVariantToAdd);
+            // Act
+            Action act = () => catalogManager.AddImageVariantToCatalog(imageVariantToAdd);
 
-        // Assert
-        Exception ex = Assert.Throws<ArgumentException>(act);
-        Assert.Equal("A name must be given", ex.Message);
+            // Assert
+            Exception ex = Assert.Throws<ArgumentException>(act);
+            Assert.Equal("A name must be given", ex.Message);
         }
 
         [Fact]

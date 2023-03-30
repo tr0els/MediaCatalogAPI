@@ -1,14 +1,14 @@
-﻿using System;
+﻿using MediaCatalog.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using MediaCatalog.Core.Entities;
 
 namespace MediaCatalog.Infrastructure
 {
     public class DbInitializer : IDbInitializer
     {
         // This method will create and seed the database.
-        public void Initialize(ProductCatalogContext context)
+        public void Initialize(MediaCatalogContext context)
         {
             // Delete the database, if it already exists. I do this because an
             // existing database may not be compatible with the entity model,

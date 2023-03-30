@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
-namespace MediaCatalog.Core.Entities
+﻿namespace MediaCatalog.Core.Entities
 {
     public class ImageVariant
     {

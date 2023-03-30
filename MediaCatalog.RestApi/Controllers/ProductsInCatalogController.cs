@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using MediaCatalog.Core.Entities;
+﻿using MediaCatalog.Core.Entities;
 using MediaCatalog.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using MediaCatalog.Core.Services;
 
 namespace MediaCatalog.RestApi.Controllers
 {

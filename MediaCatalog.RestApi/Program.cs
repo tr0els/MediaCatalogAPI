@@ -5,7 +5,6 @@ using MediaCatalog.Core.Services;
 using MediaCatalog.Infrastructure;
 using MediaCatalog.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +12,7 @@ ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
 //builder.Services.AddDbContext<ProductCatalogContext>(opt => opt.UseInMemoryDatabase("ProductCatalogDb"));
-builder.Services.AddDbContext<ProductCatalogContext>(opt => opt.UseSqlite("Data Source=App.db"));
+builder.Services.AddDbContext<MediaCatalogContext>(opt => opt.UseSqlite("Data Source=App.db"));
 builder.Services.AddScoped<IRepository<Catalog>, CatalogRepository>();
 builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
 builder.Services.AddScoped<IRepository<Image>, ImageRepository>();
@@ -51,7 +50,7 @@ if (app.Environment.IsDevelopment())
     using (var scope = app.Services.CreateScope())
     {
         var services = scope.ServiceProvider;
-        var dbContext = services.GetService<ProductCatalogContext>();
+        var dbContext = services.GetService<MediaCatalogContext>();
         var dbInitializer = services.GetService<IDbInitializer>();
         dbInitializer.Initialize(dbContext);
     }

@@ -1,9 +1,5 @@
 ﻿using MediaCatalog.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using MediaCatalog.Core.Entities;
-using MediaCatalog.Core.Services;
-using MediaCatalog.Infrastructure.Repositories;
-using System.IO;
 
 namespace MediaCatalog.RestApi.Controllers
 {
@@ -44,10 +40,11 @@ namespace MediaCatalog.RestApi.Controllers
                     file.FileName);
 
                 // Save image object with relation to product
-                var newImage = new { 
-                    Url = result.AbsoluteUri, 
-                    Width = h, 
-                    Height = w 
+                var newImage = new
+                {
+                    Url = result.AbsoluteUri,
+                    Width = h,
+                    Height = w
                 };
 
                 return new OkObjectResult(newImage);

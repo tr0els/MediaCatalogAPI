@@ -2,9 +2,7 @@
 using Azure.Storage.Blobs.Models;
 using MediaCatalog.Core.Interfaces;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MediaCatalog.Infrastructure.Repositories

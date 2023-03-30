@@ -2,7 +2,6 @@
 using MediaCatalog.Core.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 
 namespace MediaCatalog.Core.Services

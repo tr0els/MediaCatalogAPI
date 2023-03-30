@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using MediaCatalog.Core.Entities;
+﻿using MediaCatalog.Core.Entities;
 using MediaCatalog.Core.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MediaCatalog.Infrastructure.Repositories
 {
     public class ProductRepository : IProductRepository<Product>
     {
-        private readonly ProductCatalogContext _ctx;
+        private readonly MediaCatalogContext _ctx;
 
-        public ProductRepository(ProductCatalogContext context)
+        public ProductRepository(MediaCatalogContext context)
         {
             _ctx = context;
         }
@@ -64,7 +63,7 @@ namespace MediaCatalog.Infrastructure.Repositories
                 .ThenInclude(x => x.ImageVariants
                     .Where(c => c.CatalogId == catalogId))
                 .FirstOrDefault(p => p.Id == productId);
-}
+        }
 
         public Product Remove(int id)
         {

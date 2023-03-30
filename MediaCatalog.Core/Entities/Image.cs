@@ -11,6 +11,6 @@ namespace MediaCatalog.Core.Entities
         public int Width { get; set; }
         public int Height { get; set; }
         public Product Product { get; set; }
-        public List<ImageVariant> ImageVariants { get; set; } 
+        public List<ImageVariant> ImageVariants { get; set; }
     }
 }
