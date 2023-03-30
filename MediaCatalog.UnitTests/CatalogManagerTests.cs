@@ -188,17 +188,6 @@ namespace MediaCatalog.UnitTests
         public void UpdateCatalog_WithNameMissing_ShouldThrowException()
         {
             // Arrange
-            var existingCatalog = new Catalog()
-            {
-                Id = 1,
-                Name = "Name"
-            };
-
-            // Making sure the catalog exists before test
-            fakeCatalogRepo.Setup(repo => repo
-                .Get(It.Is<int>(id => id == existingCatalog.Id)))
-                .Returns(() => existingCatalog);
-
             var catalogToUpdate = new Catalog()
             {
                 Id = 1

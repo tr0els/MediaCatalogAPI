@@ -13,7 +13,7 @@ ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
 //builder.Services.AddDbContext<ProductCatalogContext>(opt => opt.UseInMemoryDatabase("ProductCatalogDb"));
-builder.Services.AddDbContext<ProductCatalogContext>(opt => opt.UseSqlite("Data Source=App.db"));
+builder.Services.AddDbContext<MediaCatalogContext>(opt => opt.UseSqlite("Data Source=App.db"));
 builder.Services.AddScoped<IRepository<Catalog>, CatalogRepository>();
 builder.Services.AddScoped<IProductRepository<Product>, ProductRepository>();
 builder.Services.AddScoped<IRepository<Image>, ImageRepository>();
@@ -40,7 +40,7 @@ var app = builder.Build();
 app.UseCors(builder =>
 {
     builder
-          .WithOrigins("http://localhost:4200", "https://localhost:4200")
+          .WithOrigins("http://localhost:4200", "https://localhost:4200", "http://localhost:5000", "https://localhost:5001")
           .SetIsOriginAllowedToAllowWildcardSubdomains()
           .AllowAnyHeader()
           .AllowCredentials()
@@ -48,7 +48,6 @@ app.UseCors(builder =>
           .SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
 }
 );
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -60,7 +59,7 @@ if (app.Environment.IsDevelopment())
     using (var scope = app.Services.CreateScope())
     {
         var services = scope.ServiceProvider;
-        var dbContext = services.GetService<ProductCatalogContext>();
+        var dbContext = services.GetService<MediaCatalogContext>();
         var dbInitializer = services.GetService<IDbInitializer>();
         dbInitializer.Initialize(dbContext);
     }

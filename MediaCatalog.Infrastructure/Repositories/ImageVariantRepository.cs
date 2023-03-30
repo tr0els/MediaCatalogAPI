@@ -10,9 +10,9 @@ namespace MediaCatalog.Infrastructure.Repositories
 {
     public class ImageVariantRepository : IRepository<ImageVariant>
     {
-        private readonly ProductCatalogContext _ctx;
+        private readonly MediaCatalogContext _ctx;
 
-        public ImageVariantRepository(ProductCatalogContext context)
+        public ImageVariantRepository(MediaCatalogContext context)
         {
             _ctx = context;
         }

@@ -46,8 +46,8 @@ namespace MediaCatalog.RestApi.Controllers
                 // Save image object with relation to product
                 var newImage = new { 
                     Url = result.AbsoluteUri, 
-                    Width = w, 
-                    Height = h 
+                    Width = h, 
+                    Height = w 
                 };
 
                 return new OkObjectResult(newImage);
