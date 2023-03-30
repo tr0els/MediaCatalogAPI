@@ -9,9 +9,9 @@ namespace MediaCatalog.Infrastructure.Repositories
 {
     public class CatalogRepository : IRepository<Catalog>
     {
-        private readonly MediaCatalogContext _ctx;
+        private readonly ProductCatalogContext _ctx;
 
-        public CatalogRepository(MediaCatalogContext context)
+        public CatalogRepository(ProductCatalogContext context)
         {
             _ctx = context;
         }

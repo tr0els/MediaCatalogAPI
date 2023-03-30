@@ -2,6 +2,6 @@
 {
     public interface IDbInitializer
     {
-        void Initialize(MediaCatalogContext context);
+        void Initialize(ProductCatalogContext context);
     }
 }
